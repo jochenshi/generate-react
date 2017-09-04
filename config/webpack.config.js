@@ -8,9 +8,14 @@ const config = {
         filename: 'bundle.js'
     },
     module: {
-        rule: [
+        rules: [
             {
-                test: ''
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['react', 'es2015']
+                }
             }
         ]
     }
