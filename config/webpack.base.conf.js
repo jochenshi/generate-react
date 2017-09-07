@@ -1,17 +1,15 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
 
+function resolve (dir) {
+    return path.resolve()
+}
 
-var APP_DIR = path.resolve(__dirname, '../src');
-
-
-// __dirname返回的是当前被执行js所在的文件夹的绝对路径
+const APP_DIR = path.resolve(__dirname, '../src/')
 
 const config = {
-    entry: APP_DIR+ '/index.js',
+    entry: APP_DIR + 'index.js',
     output: {
-        path: path.resolve(__dirname, '../build'),
+        path: path.resolve(__dirname, '../build/'),
         filename: 'bundle.js'
     },
     module: {
@@ -32,12 +30,5 @@ const config = {
                 }
             }
         ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'index.html'
-        })
-    ]
-};
-
-module.exports = config;
+    }
+}
