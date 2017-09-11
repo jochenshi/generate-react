@@ -28,7 +28,10 @@ const pro_config = merge(baseConfig, {
             inject: true,
             minify: {
                 removeComments: true,
-                collapseWhiteSpace: true
+                collapseWhiteSpace: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
             }
         })
     ]

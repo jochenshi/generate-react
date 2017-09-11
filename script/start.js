@@ -30,5 +30,24 @@ choosePort(HOST, DEFAULT_PORT)
         const protocol = process.env.HTTPS === 'true' ? 'https': 'http';
         const urls = prepareUrls(protocol, HOST, DEFAULT_PORT);
         const compiler = createCompiler(webpack, config, 'react-test', urls)
-
+        const devServer = new WebpackDevServer(compiler)
+        devServer.listen(port, HOST, err => {
+            if (err) {
+                return console.log(err);
+            }
+            console.log('Starting server');
+            openBrowser('http://localhost:3000');
+        });
+        ['SIGINT', 'SIGTREM'].forEach(function (sig) {
+            process.on(sig, function () {
+                devServer.close()
+                process.exit()
+            });
+        });
+    })
+    .catch( err => {
+        if (err && err.message) {
+            console.log(err.message)
+        }
+        process.exit()
     })
