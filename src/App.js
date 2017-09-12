@@ -14,6 +14,7 @@ const About = React.createClass({
 
 const Index = React.createClass({
     render() {
+        console.log(this.props.location)
         return (
             <h3>Index</h3>
         )
