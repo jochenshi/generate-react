@@ -5,9 +5,12 @@ import './index.styl'
 import Home from './module/home/home'
 
 const About = React.createClass({
+    propTypes: {
+        name: React.PropTypes.string.isRequired
+    },
     render() {
         return (
-            <h3>About</h3>
+            React.DOM.h3(null, 'About' + this.props.name)
         )
     }
 })
@@ -35,7 +38,9 @@ class App extends Component {
                     </li>
                 </ul>
                 <div>
-                    <Route path = "/about" component={About}/>
+                    <Route path = "/about" render = { () => {
+                        return React.createElement(About, {name: 'asd'})
+                    }}/>
                     <Route path = "/index" component={Index}/>
                 </div>
                 <Home />
