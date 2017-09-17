@@ -7,10 +7,20 @@ let Excel = React.createClass({
     },
     getInitialState () {
         return {
-            data: this.props.datas
+            data: this.props.datas,
+            sortBy: null,
+            descending: false
         }
     },
     _sort (event) {
+        let column = event.target.cellIndex;
+        let sortData = this.state.data.slice();
+        sortData.sort( (a, b) => {
+            return a[column] > b[column] ? 1 : -1;
+        });
+        this.setState({
+            data: sortData
+        });
         console.log(event.target.cellIndex)
     },
     render () {
