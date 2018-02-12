@@ -27,8 +27,8 @@ const config = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 include: [APP_DIR],
-                options: {
-                    presets: ['react']
+                query: {
+                    presets: ['react', 'env', 'stage-3', 'stage-0']
                 }
             },
             {
@@ -39,6 +39,26 @@ const config = {
                     fallback: "style-loader",
                     use: ['css-loader?-autoprefixer', 'stylus-loader']
                 })
+            },
+            {
+                test: /.css$/, 
+                loaders: 'style-loader!css-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'img/[name].[hash:7].[ext]'
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'fonts/[name].[hash:7].[ext]'
+                }
             }
         ]
     },
